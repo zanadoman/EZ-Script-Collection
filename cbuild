@@ -62,7 +62,7 @@ then
         exit 1
     fi
 
-    if ${LINUX_COMPILER} -o ${LINUX_BUILD_FOLDER}/${LINUX_BUILD_NAME} ${LINUX_ASSEMBLY_FOLDER}/*.s ${LINUX_LIBRARIES} -lm
+    if ${LINUX_COMPILER} -o "${LINUX_BUILD_FOLDER}/${LINUX_BUILD_NAME}" "${LINUX_ASSEMBLY_FOLDER}"/*.s ${LINUX_LIBRARIES} -lm
     then
         echo -e "${YELLOW}Linux ${GREEN}linking successful!${ENDCOLOR}"
     else
@@ -97,7 +97,7 @@ then
         exit 1
     fi
 
-    if ${WINDOWS_COMPILER} -o ${WINDOWS_BUILD_FOLDER}/${WINDOWS_BUILD_NAME} ${WINDOWS_ASSEMBLY_FOLDER}/*.s ${WINDOWS_LIBRARIES} -lm
+    if ${WINDOWS_COMPILER} -o "${WINDOWS_BUILD_FOLDER}/${WINDOWS_BUILD_NAME}" "${WINDOWS_ASSEMBLY_FOLDER}"/*.s ${WINDOWS_LIBRARIES} -lm
     then
         echo -e "${BLUE}Windows ${GREEN}linking successful!${ENDCOLOR}"
     else
@@ -131,7 +131,7 @@ then
         exit 1
     fi
 
-    if ${GIT_COMPILER} -o ${GIT_BUILD_FOLDER}/${GIT_BUILD_NAME} ${GIT_ASSEMBLY_FOLDER}/*.s ${GIT_LIBRARIES} -lm
+    if ${GIT_COMPILER} -o "${GIT_BUILD_FOLDER}/${GIT_BUILD_NAME}" "${GIT_ASSEMBLY_FOLDER}"/*.s ${GIT_LIBRARIES} -lm
     then
         echo -e "${MAGENTA}Git ${GREEN}linking successful!${ENDCOLOR}"
     else

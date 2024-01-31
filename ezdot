@@ -13,7 +13,7 @@ ENDCOLOR="\e[0m"
 
 if [[ -n ${1} && ${1} == "-n" ]] || [[ -n ${1} && ${1} == "--new" ]]
 then
-    if dotnet new console --framework ${DOTNET_VERSION} --langVersion ${LANGUAGE_VERSION} --use-program-main true --name $2 1> /dev/null
+    if dotnet new console --framework ${DOTNET_VERSION} --langVersion ${LANGUAGE_VERSION} --use-program-main true --name "${2}" 1> /dev/null
     then
         echo -e 'using System;\nusing System.Runtime.InteropServices;\n\nnamespace '${2}'\n{\n\tinternal unsafe class Program\n\t{\n\t\tstatic void Main(string[] args)\n\t\t{\n\t\t\tConsole.WriteLine("Hello World!");\n\t\t}\n\t}\n}' > './'${2}'/Program.cs'
         echo -e '<Project Sdk="Microsoft.NET.Sdk">\n\n\t<PropertyGroup>\n\t\t<OutputType>Exe</OutputType>\n\t\t<TargetFramework>'${DOTNET_VERSION}'</TargetFramework>\n\t\t<LangVersion>'${LANGUAGE_VERSION}'</LangVersion>\n\t\t<ImplicitUsings>disable</ImplicitUsings>\n\t\t<Nullable>enable</Nullable>\n\t\t<AllowUnsafeBlocks>true</AllowUnsafeBlocks>\n\t</PropertyGroup>\n\n</Project>' > './'${2}'/'${2}'.csproj'
@@ -33,7 +33,7 @@ then
         echo
         case $choice in
             r)
-                ./bin/Debug/net8.0/$(basename $PWD)
+                ./bin/Debug/${DOTNET_VERSION}/"$(basename $PWD)"
                 ;;
             b)
                 sudo dotnet run
