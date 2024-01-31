@@ -149,4 +149,4 @@ then
     fi
 fi
 
-echo -e "\nUsage: ./cbuild.sh [options]\n\nOptions:\n  -l|--linux\tBuild for ${YELLOW}Linux${ENDCOLOR} (x86_64).\n  -w|--windows\tBuild for ${BLUE}Windows${ENDCOLOR} (x86_64).\n  -g|--git\tRapid build with ${MAGENTA}git${ENDCOLOR}.\n"
+echo -e "\nUsage: cbuild [options]\n\nOptions:\n  -h|--help\tDisplay help.\n  -l|--linux\tBuild for ${YELLOW}Linux${ENDCOLOR} (x86_64).\n  -w|--windows\tBuild for ${BLUE}Windows${ENDCOLOR} (x86_64).\n  -g|--git\tRapid build with ${MAGENTA}git${ENDCOLOR}.\n"
