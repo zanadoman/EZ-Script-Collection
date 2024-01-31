@@ -1,73 +1,54 @@
 #!/bin/bash
 
-function new()
-{
-    dotnet new console --name $1 --use-program-main true --framework net8.0 --langVersion 12 1> /dev/null
-    if [ $? == 0 ]
+#############################################################################################################################
+
+DOTNET_VERSION=""
+LANGUAGE_VERSION=""
+
+#############################################################################################################################
+
+GREEN="\e[92m"
+RED="\e[91m"
+ENDCOLOR="\e[0m"
+
+if [[ -n $1 && $1 == "-n" ]] || [[ -n $1 && $1 == "--new" ]]
+then
+    if dotnet new console --framework ${DOTNET_VERSION} --langVersion ${LANGUAGE_VERSION} --use-program-main true --name $2 1> /dev/null
     then
         echo -e 'using System;\nusing System.Runtime.InteropServices;\n\nnamespace '$1'\n{\n\tinternal unsafe class Program\n\t{\n\t\tstatic void Main(string[] args)\n\t\t{\n\t\t\tConsole.WriteLine("Hello World!");\n\t\t}\n\t}\n}' > './'$1'/Program.cs'
         echo -e '<Project Sdk="Microsoft.NET.Sdk">\n\n\t<PropertyGroup>\n\t\t<OutputType>Exe</OutputType>\n\t\t<TargetFramework>net8.0</TargetFramework>\n\t\t<LangVersion>12</LangVersion>\n\t\t<ImplicitUsings>disable</ImplicitUsings>\n\t\t<Nullable>enable</Nullable>\n\t\t<AllowUnsafeBlocks>true</AllowUnsafeBlocks>\n\t</PropertyGroup>\n\n</Project>' > './'$1'/'$1'.csproj'
-        echo "The project was created successfully."
+        echo -e "${GREEN}Project was created successfully!${ENDCOLOR}"
+        exit 0
     else
-        echo "Failed to create the project."
+        echo -e "${RED}Failed to create project!${ENDCOLOR}"
+        exit 1
     fi
-}
+fi
 
-function debug()
-{
-    project="$(basename $PWD)"
+if [[ -n $1 && $1 == "-d" ]] || [[ -n $1 && $1 == "--debug" ]]
+then
     while true
     do
         read -n 1 -s -r -p $'\rRun: r | Build & Run: b' choice
         echo
         case $choice in
             r)
-                ./bin/Debug/net8.0/$project
+                ./bin/Debug/net8.0/$(basename $PWD)
                 ;;
             b)
                 sudo dotnet run
                 ;;
             $'\e')
-                break
+                exit 0
                 ;;
         esac
     done
-}
-
-function help()
-{
-    echo -e "\nUsage: ezdot [options]\n\nOptions:\n  -h|--help\tDisplay help.\n  -n|--new\tNew console app.\n  -d|--debug\tDebug console app.\n  --version\tDisplay .NET version.\n"
-}
-
-if [ -z $1 ]
-then
-    help
-    exit 1
 fi
 
 if [ $1 == "--version" ]
 then
-    echo ".NET version: $(dotnet --version)"
+    echo -e ".NET version: $(dotnet --version)"
     exit 0
 fi
 
-if [ $1 == "-n" ] || [ $1 == "--new" ]
-then
-    if [ ! -z $2 ]
-    then
-        new $2
-        exit 0
-    else
-        help
-        exit 1
-    fi
-fi
-
-if [ $1 == "-d" ] || [ $1 == "--debug" ]
-then
-    debug
-    exit 0
-fi
-
-help
-exit 1
+echo -e "\nUsage: ezdot [options]\n\nOptions:\n  -h|--help\tDisplay help.\n  -n|--new\tNew console app.\n  -d|--debug\tDebug console app.\n  --version\tDisplay .NET version.\n"
