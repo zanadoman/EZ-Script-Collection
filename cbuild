@@ -45,7 +45,7 @@ BLUE="\e[94m"
 MAGENTA="\e[95m"
 ENDCOLOR="\e[0m"
 
-if [[ -n $1 && $1 == "-l" ]] || [[ -n $1 && $1 == "--linux" ]]
+if [[ -n ${1} && ${1} == "-l" ]] || [[ -n ${1} && ${1} == "--linux" ]]
 then
     ls "${LINUX_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${LINUX_ASSEMBLY_FOLDER}"
     ls "${LINUX_BUILD_FOLDER}" &> /dev/null || mkdir "${LINUX_BUILD_FOLDER}"
@@ -80,7 +80,7 @@ then
     fi
 fi
 
-if [[ -n $1 && $1 == "-w" ]] || [[ -n $1 && $1 == "--windows" ]]
+if [[ -n ${1} && ${1} == "-w" ]] || [[ -n ${1} && ${1} == "--windows" ]]
 then
     ls "${WINDOWS_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${WINDOWS_ASSEMBLY_FOLDER}"
     ls "${WINDOWS_BUILD_FOLDER}" &> /dev/null || mkdir "${WINDOWS_BUILD_FOLDER}"
@@ -115,7 +115,7 @@ then
     fi
 fi
 
-if [[ -n $1 && $1 == "-g" ]] || [[ -n $1 && $1 == "--git" ]]
+if [[ -n ${1} && ${1} == "-g" ]] || [[ -n ${1} && ${1} == "--git" ]]
 then
     ls "${GIT_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${GIT_ASSEMBLY_FOLDER}"
     ls "${GIT_BUILD_FOLDER}" &> /dev/null || mkdir "${GIT_BUILD_FOLDER}"
