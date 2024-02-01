@@ -25,7 +25,7 @@ WINDOWS_BUILD_FOLDER=""
 WINDOWS_RUN_PREFIX=""
 WINDOWS_RUN_SUFFIX=""
 
-GIT_FILTER=""
+GIT_GREP_FILTER=""
 GIT_ASSEMBLY_FOLDER=""
 GIT_COMPILER=""
 GIT_WARNINGS=""
@@ -124,7 +124,7 @@ then
     ls "${GIT_ASSEMBLY_FOLDER}" &> /dev/null || mkdir "${GIT_ASSEMBLY_FOLDER}"
     ls "${GIT_BUILD_FOLDER}" &> /dev/null || mkdir "${GIT_BUILD_FOLDER}"
 
-    if ${GIT_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${GIT_EXTRA_FLAGS} ${GIT_WARNINGS} -S $(find $(git diff --name-only) -name ${GIT_FILTER})
+    if ${GIT_COMPILER} -m64 -std=${LANGUAGE_VERSION} -O3 ${GIT_EXTRA_FLAGS} ${GIT_WARNINGS} -S $(git diff --name-only | grep ${GIT_GREP_FILTER})
     then
         echo -e "${MAGENTA}Git ${GREEN}compilation successful!${ENDCOLOR}"
         mv ./*.s "${GIT_ASSEMBLY_FOLDER}" &> /dev/null
