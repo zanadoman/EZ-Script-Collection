@@ -1,3 +1,4 @@
-# Yet Another Silly Build Script Collection
-cbuild - C/C++\
-ezdot - C#
+# EZ Script Collection
+cbuild - Build script for C/C++
+ezdot - Build script for C# console apps
+ezgit - Git handler for noobs
