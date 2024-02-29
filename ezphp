@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ -n ${1} && ${1} == "-r" ]] || [[ -n ${1} && ${1} == "--run" ]]
+then
+    xdg-open 127.0.0.1:80
+    sudo php -S 127.0.0.1:80
+    exit $?
+fi
+
+echo -e "\nUsage: ezphp [options]\n\nOptions:\n  -r|--run\tRun server.\n"
